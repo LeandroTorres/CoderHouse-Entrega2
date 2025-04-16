@@ -12,7 +12,7 @@
 
 <body>
   <!-- header -->
-  <div class="header">
+  <div class=" container header">
     <h1>Mantenimineto Preventivo</h1>
     <h2>ERCO Refrigeracion - Especialistas en Refrigeración</h2>
 
@@ -23,7 +23,7 @@
 
   <div class="main">
 
-    <div class="container">
+    <div class="container abm">
       <h3>ABM Equipos</h3>
       <form id="equipoForm">
         <label for="cliente">Cliente:</label><br>
@@ -39,12 +39,12 @@
       </form>
     </div>
 
-    <div class="container">
+    <div class="container lista">
       <h3>Equipos Cargados</h3>
       <ul class="list-group" id="listaEquipos"></ul>
     </div>
 
-    <div class="container">
+    <div class="container cargaticket">
       <h3>Carga de Tickets</h3>
       <form id="ticketForm">
         <label for="cliente">Cliente:</label><br>
@@ -72,12 +72,30 @@
         <textarea id="observaciones" name="observaciones" rows="3"></textarea><br>
     
         <button type="submit" class="btn btn-info">Cargar</button>
-      </form>
-    
+      </form>    
       
-    </div>    
+    </div> 
+    
+    <div class="filtros-tickets">
+      <h4>Filtrar Tickets</h4>
+      <input type="text" id="filtroClienteTicket" placeholder="Cliente">
+      <input type="text" id="filtroIdEquipoTicket" placeholder="ID Equipo">
+      <select id="filtroTipoTicket">
+        <option value="">Tipo</option>
+        <option value="Preventivo">Preventivo</option>
+        <option value="Correctivo">Correctivo</option>
+        <option value="Hiperactivo">Hiperactivo</option>
+      </select>
+      <select id="filtroEstadoTicket">
+        <option value="">Estado</option>
+        <option value="Abierto">Abierto</option>
+        <option value="Cerrado">Cerrado</option>
+      </select>
+      <button onclick="filtrarTickets()">Aplicar Filtro</button>
+      <button onclick="limpiarFiltrosTickets()">Limpiar</button>
+    </div>
 
-    <div class="container">
+    <div class="container lista">
       <h3>Lista de Tickets</h3>
       <ul class="list-group" id="listaTickets"></ul>
     </div>
