@@ -45,33 +45,37 @@
     </div>
 
     <div class="container">
-      <h3> Carga de Tickets</h3>
+      <h3>Carga de Tickets</h3>
       <form id="ticketForm">
-        <label for="clienteTicket">Cliente:</label><br>
-        <input type="text" id="cliente" name="clienteTicket"><br>
-
-        <label for="idEquipoTicket">IdEquipos:</label><br>
-        <input type="text" id="idEquipo" name="idEquipoTicket"><br>
-
-        <select id="tipoTicket" aria-label="Tipo de Ticket">
+        <label for="cliente">Cliente:</label><br>
+        <input type="text" id="clienteTicket" name="clienteTicket"><br>
+    
+        <label for="idEquipo">IdEquipos:</label><br>
+        <input type="text" id="idEquipoTicket" name="idEquipoTicket"><br>
+    
+        <label for="tipoTicket">Tipo de Ticket:</label><br>
+        <select id="tipoTicket">
           <option value="" selected disabled>Tipo de Ticket</option>
           <option value="Preventivo">Preventivo</option>
           <option value="Correctivo">Correctivo</option>
           <option value="Hiperactivo">Hiperactivo</option>
         </select><br>
-
-        <select id="estadoTicket" aria-label="Estado de Ticket">
+    
+        <label for="estadoTicket">Estado de Ticket:</label><br>
+        <select id="estadoTicket">
           <option value="" selected disabled>Estado de Ticket</option>
           <option value="Cerrado">Cerrado</option>
           <option value="Abierto">Abierto</option>
         </select><br>
-
+    
         <label for="observaciones">Observaciones:</label><br>
-        <textarea id="observaciones" rows="3"></textarea><br>
-
+        <textarea id="observaciones" name="observaciones" rows="3"></textarea><br>
+    
         <button type="submit" class="btn btn-info">Cargar</button>
       </form>
-    </div>
+    
+      
+    </div>    
 
     <div class="container">
       <h3>Lista de Tickets</h3>

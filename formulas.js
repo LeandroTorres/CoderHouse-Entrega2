@@ -80,48 +80,69 @@ console.log(equipos)
 
 tickets = JSON.parse(localStorage.getItem("tickets")) || [];
 
-
-//🟢 Constructor de Objeto Ticket
 function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones) {
-    this.clienteTicket = cliente;
-    this.idEquipoTicket = idEquipo;
-    this.tipoTicket = tipoTicket;
-    this.estadoTicket = estadoTicket;
-    this.observaciones = observaciones;
+  this.clienteTicket = cliente;
+  this.idEquipoTicket = idEquipo;
+  this.tipoTicket = tipoTicket;
+  this.estadoTicket = estadoTicket;
+  this.observaciones = observaciones;
 }
 
-//🟢 Función para manejar el envío del formulario
 document.getElementById("ticketForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita que la página se recargue
+  event.preventDefault();
 
-    // 🟢Obtener valores de los inputs
-    let clienteTicket = document.getElementById("cliente").value;
-    let idEquipoTicket = document.getElementById("idEquipo").value;
-    let tipoTicket = document.getElementById("tipoTicket").value;
-    let estadoTicket = document.getElementById("estadoTicket").value;
-    let observaciones = document.getElementById("observaciones").value;
+  let clienteTicket = document.getElementById("clienteTicket").value.trim();
+  let idEquipoTicket = document.getElementById("idEquipoTicket").value.trim();
+  let tipoTicket = document.getElementById("tipoTicket").value;
+  let estadoTicket = document.getElementById("estadoTicket").value;
+  let observaciones = document.getElementById("observaciones").value.trim();
 
-    // 🟡Validación de campos obligatorios
-    if (!clienteTicket || !idEquipoTicket || !tipoTicket || !estadoTicket) {
-        alert("Por favor, completá todos los campos obligatorios.");
-    
-    }
+   // 🔍 DEBUGGING
+   console.log("Cliente:", clienteTicket);
+   console.log("ID Equipo:", idEquipoTicket);
+   console.log("Tipo Ticket:", tipoTicket);
+   console.log("Estado Ticket:", estadoTicket);
+   console.log("Observaciones:", observaciones);
+ 
 
-    //🟢 Crear objeto ticket con los datos ingresados
-    let nuevoTicket = new Ticket(
-        clienteTicket,
-        idEquipoTicket,
-        tipoTicket,
-        estadoTicket,
-        observaciones
-    );
+  if (!clienteTicket || !idEquipoTicket || !tipoTicket || !estadoTicket) {
+    alert("Por favor, completá todos los campos obligatorios.");
+    return;
+  }
 
-    //🟢Guardar el objeto en el array
-    tickets.push(nuevoTicket);
+  let nuevoTicket = new Ticket(
+    clienteTicket,
+    idEquipoTicket,
+    tipoTicket,
+    estadoTicket,
+    observaciones
+  );
 
-    //🟢 Guardar en localStorage
-    localStorage.setItem("tickets", JSON.stringify(tickets));
+  tickets.push(nuevoTicket);
+  localStorage.setItem("tickets", JSON.stringify(tickets));
 
-    //🟢 Actualizar vista
-    actualizarListaTickets();
+  actualizarListaTickets();
+  document.getElementById("ticketForm").reset();
 });
+
+function actualizarListaTickets() {
+  let lista = document.getElementById("listaTickets");
+  lista.innerHTML = "";
+
+  if (tickets.length > 0) {
+    tickets.forEach(ticket => {
+      let li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = `Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Obs: ${ticket.observaciones}`;
+      lista.appendChild(li);
+    });
+  } else {
+    let li = document.createElement("li");
+    li.classList.add("list-group-item", "text-muted", "fst-italic");
+    li.textContent = "Aún no hay tickets cargados.";
+    lista.appendChild(li);
+  }
+}
+
+actualizarListaTickets();
+
