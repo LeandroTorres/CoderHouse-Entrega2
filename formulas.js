@@ -1,3 +1,4 @@
+🟡✔️🟢👉🔍📌🚨🔴💡🔁
 // Creo "equipos" y "tickets" que es donde se mostrararan los datos cargados
 let equipos = [];
 let tickets = [];
@@ -63,7 +64,7 @@ function actualizarListaEquipos() {
       lista.appendChild(li);
     });
   } else {
-    // ✔️Si no hay equipos, muestra un mensaje
+    // 🚨 Si no hay equipos, muestra un mensaje
     let li = document.createElement("li");
     li.classList.add("list-group-item", "text-muted", "fst-italic"); // estilo para el mensaje vacío
     li.textContent = "Aún no hay equipos cargados.";
@@ -81,6 +82,8 @@ console.log(equipos)
 
 tickets = JSON.parse(localStorage.getItem("tickets")) || [];
 
+//🟢 Constructor de Objetos Ticket
+
 function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones) {
   this.clienteTicket = cliente;
   this.idEquipoTicket = idEquipo;
@@ -89,8 +92,12 @@ function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones) {
   this.observaciones = observaciones;
 }
 
+//🟢Funcion para manejar el Envio de Formulario
+
 document.getElementById("ticketForm").addEventListener("submit", function (event) {
-  event.preventDefault();
+  event.preventDefault(); // Reset, evita que la pagina se recargue
+
+//🟢 Obtener valores de los imputs
 
   let clienteTicket = document.getElementById("clienteTicket").value.trim();
   let idEquipoTicket = document.getElementById("idEquipoTicket").value.trim();
@@ -105,12 +112,12 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
   console.log("Estado Ticket:", estadoTicket);
   console.log("Observaciones:", observaciones);
 
-
   if (!clienteTicket || !idEquipoTicket || !tipoTicket || !estadoTicket) {
     alert("Por favor, completá todos los campos obligatorios.");
     return;
   }
 
+  //🟢 Crear objeto Ticket con los datos ingresados
   let nuevoTicket = new Ticket(
     clienteTicket,
     idEquipoTicket,
@@ -119,33 +126,41 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
     observaciones
   );
 
+  //🟢 Guarda objeto en el array
+
   tickets.push(nuevoTicket);
+
+  //🟢 Guardar la lista de tickets el localStorage
   localStorage.setItem("tickets", JSON.stringify(tickets));
 
+  // mostrar en pagina los tickets
   actualizarListaTickets();
   document.getElementById("ticketForm").reset();
 });
 
-function actualizarListaTickets() {
+//🟢 Funcion para mostrar los tickets en la lista HTML
+function actualizarListaTickets(listaFiltrada = tickets) {
   let lista = document.getElementById("listaTickets");
   lista.innerHTML = "";
 
-  if (tickets.length > 0) {
-    tickets.forEach(ticket => {
-      let li = document.createElement("li");
-      li.classList.add("list-group-item");
-      li.textContent = `Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Obs: ${ticket.observaciones}`;
-      lista.appendChild(li);
-    });
+  //🟢 Verifica si hay tickets
+  if (listaFiltrada.length > 0) {
+      listaFiltrada.forEach(ticket => {
+          let li = document.createElement("li");
+          li.classList.add("list-group-item");
+          li.textContent = `Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Observaciones: ${ticket.observaciones}`;
+          lista.appendChild(li);
+      });
   } else {
-    let li = document.createElement("li");
-    li.classList.add("list-group-item", "text-muted", "fst-italic");
-    li.textContent = "Aún no hay tickets cargados.";
-    lista.appendChild(li);
+    //🚨 Si nohay tickets muestra un mensaje
+      let li = document.createElement("li");
+      li.classList.add("list-group-item", "text-muted", "fst-italic");
+      li.textContent = "No se encontraron tickets con esos criterios.";
+      lista.appendChild(li);
   }
 }
 
-//filtros
+//                  🟢🟢Filtros🟢🟢
 function filtrarTickets() {
   const clienteFiltro = document.getElementById("filtroClienteTicket").value.trim().toLowerCase();
   const idEquipoFiltro = document.getElementById("filtroIdEquipoTicket").value.trim().toLowerCase();
@@ -163,7 +178,7 @@ function filtrarTickets() {
 
   actualizarListaTickets(ticketsFiltrados);
 }
-
+//🟢 Limpia campos en filtro
 function limpiarFiltrosTickets() {
   document.getElementById("filtroClienteTicket").value = "";
   document.getElementById("filtroIdEquipoTicket").value = "";
@@ -172,5 +187,6 @@ function limpiarFiltrosTickets() {
   actualizarListaTickets(tickets); // Mostrar todos
 }
 
-actualizarListaTickets();
+
+/* actualizarListaTickets(); */
 
