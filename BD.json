@@ -1,0 +1,65 @@
+[
+  
+    {
+        "IdEquipo": "HI001",
+        "NombreEquipo": "Chiller 10TR",
+        "Cliente": "Holliday Inn"
+    },
+    {
+        "IdEquipo": "HI002",
+        "NombreEquipo": "Bajo Mesada Lobby",
+        "Cliente": "Holliday Inn"
+    },
+    {
+        "IdEquipo": "HI003",
+        "NombreEquipo": "Exhibidora 1",
+        "Cliente": "Holliday Inn"
+    },
+    {
+        "IdEquipo": "HI004",
+        "NombreEquipo": "Fabricadora de Hielo 1",
+        "Cliente": "Holliday Inn"
+    },
+    
+    {
+        "IdEquipo": "F001",
+        "NombreEquipo": "Camara Huevo",
+        "Cliente": "Firenze"
+    },
+    {
+        "IdEquipo": "F002",
+        "NombreEquipo": "Aire Acondicionado Recep",
+        "Cliente": "Firenze"
+    },
+    {
+        "IdEquipo": "F003",
+        "NombreEquipo": "Tunel De Frio",
+        "Cliente": "Firenze"
+    },
+    {
+        "IdEquipo": "F004",
+        "NombreEquipo": "Sala De Amasado",
+        "Cliente": "Firenze"
+    },
+
+    {
+        "IdEquipo": "DLR001",
+        "NombreEquipo": "Camara 1",
+        "Cliente": "De Los Rios"
+    },
+    {
+        "IdEquipo": "DLR002",
+        "NombreEquipo": "Camara 2",
+        "Cliente": "De Los Rios"
+    },
+    {
+        "IdEquipo": "DLR003",
+        "NombreEquipo": "Camara 3",
+        "Cliente": "De Los Rios"
+    },
+    {
+        "IdEquipo": "DLR004",
+        "NombreEquipo": "Camara 4",
+        "Cliente": "De Los Rios"
+    }
+]
