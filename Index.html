@@ -12,7 +12,7 @@
 
 <body>
   <!-- header -->
-  <div class=" container header">
+  <div class="container header">
     <h1>Mantenimineto Preventivo</h1>
     <h2>ERCO Refrigeracion - Especialistas en Refrigeración</h2>
 
@@ -25,7 +25,7 @@
 
     <div class="container abm">
       <h3>ABM Equipos</h3>
-      <form id="equipoForm">
+      <form class="card abm" id="equipoForm">
         <label for="cliente">Cliente:</label><br>
         <input type="text" id="cliente" name="cliente"><br>
 
@@ -39,14 +39,14 @@
       </form>
     </div>
 
-    <div class="container lista">
+    <div class="card container lista">
       <h3>Equipos Cargados</h3>
       <ul class="list-group" id="listaEquipos"></ul>
     </div>
 
     <div class="container cargaticket">
       <h3>Carga de Tickets</h3>
-      <form id="ticketForm">
+      <form class="card ticket" id="ticketForm">
         <label for="cliente">Cliente:</label><br>
         <input type="text" id="clienteTicket" name="clienteTicket"><br>
     
@@ -76,7 +76,7 @@
       
     </div> 
     
-    <div class="filtros-tickets">
+    <div class="card container tickets">
       <h4>Filtrar Tickets</h4>
       <input type="text" id="filtroClienteTicket" placeholder="Cliente">
       <input type="text" id="filtroIdEquipoTicket" placeholder="ID Equipo">

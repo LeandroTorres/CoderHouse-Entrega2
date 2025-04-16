@@ -1,4 +1,4 @@
-🟡✔️🟢👉🔍📌🚨🔴💡🔁
+//🟡✔️🟢👉🔍📌🚨🔴💡🔁
 // Creo "equipos" y "tickets" que es donde se mostrararan los datos cargados
 let equipos = [];
 let tickets = [];
