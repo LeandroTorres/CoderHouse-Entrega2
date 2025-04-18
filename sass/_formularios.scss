@@ -1,0 +1,16 @@
+@use './variables' as v;
+
+#equipoForm{
+  background-color: v.$naranja;
+  color: v.$color_texto;
+  padding: 1rem;
+  border-radius: 8px;
+}
+#ticketForm{
+    background-color: black;
+    color: v.$color_texto;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+

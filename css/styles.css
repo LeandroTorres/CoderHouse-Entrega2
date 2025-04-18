@@ -1,8 +1,25 @@
-@import 'variables';
-@import 'funciones';
-@import 'main';
-@import 'tipografia';
-@import 'header';
-@import 'footer';
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+body{
+    font-family: "Ubuntu", serif;
+    color: $color_texto;
+} */
+body {
+  background-color: rgb(153, 153, 153);
+}
+
+#equipoForm {
+  background-color: rgb(246, 153, 36);
+  color: rgb(24, 22, 22);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+#ticketForm {
+  background-color: black;
+  color: rgb(24, 22, 22);
+  padding: 1rem;
+  border-radius: 8px;
+}
 
 /*# sourceMappingURL=styles.css.map */

@@ -60,7 +60,7 @@ function actualizarListaEquipos() {
     equipos.forEach(equipo => {
       let li = document.createElement("li");
       li.classList.add("list-group-item");
-      li.textContent = `ID: ${equipo.IdEquipo}, Nombre: ${equipo.NombreEquipo}, Cliente: ${equipo.Cliente}`;
+      li.textContent = `| ID: ${equipo.IdEquipo} | Nombre: ${equipo.NombreEquipo} | Cliente: ${equipo.Cliente} |`;
       lista.appendChild(li);
     });
   } else {
@@ -70,6 +70,31 @@ function actualizarListaEquipos() {
     li.textContent = "Aún no hay equipos cargados.";
     lista.appendChild(li);
   }
+}
+
+function filtrarEquipos() {
+  const clienteFiltro = document.getElementById("filtroClienteEquipo").value.trim().toLowerCase();
+  const idEquipoFiltro = document.getElementById("filtroIdEquipo").value.trim().toLowerCase();
+  const nombreEquipoFiltro = document.getElementById("filtroNombreEquipo").value.trim().toLowerCase();
+
+  const equiposGuardados = JSON.parse(localStorage.getItem("equipos")) || [];
+
+  const equiposFiltrados = equiposGuardados.filter(equipo => {
+    return (
+      (clienteFiltro === "" || equipo.cliente.toLowerCase().includes(clienteFiltro)) &&
+      (idEquipoFiltro === "" || equipo.idEquipo.toLowerCase().includes(idEquipoFiltro)) &&
+      (nombreEquipoFiltro === "" || equipo.nombreEquipo.toLowerCase().includes(nombreEquipoFiltro))
+    );
+  });
+
+  actualizarListaEquipos(equiposFiltrados);
+}
+
+function limpiarFiltrosEquipos() {
+  document.getElementById("filtroClienteEquipo").value = "";
+  document.getElementById("filtroIdEquipo").value = "";
+  document.getElementById("filtroNombreEquipo").value = "";
+  actualizarListaEquipos(); // Vuelve a mostrar todos
 }
 
 //✔️ Llamada inicial para mostrar los equipos guardados cuando la página se carga
@@ -84,12 +109,13 @@ tickets = JSON.parse(localStorage.getItem("tickets")) || [];
 
 //🟢 Constructor de Objetos Ticket
 
-function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones) {
+function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones, fechaTicket) {
   this.clienteTicket = cliente;
   this.idEquipoTicket = idEquipo;
   this.tipoTicket = tipoTicket;
   this.estadoTicket = estadoTicket;
   this.observaciones = observaciones;
+  this.fechaTicket = fechaTicket; 
 }
 
 //🟢Funcion para manejar el Envio de Formulario
@@ -104,6 +130,7 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
   let tipoTicket = document.getElementById("tipoTicket").value;
   let estadoTicket = document.getElementById("estadoTicket").value;
   let observaciones = document.getElementById("observaciones").value.trim();
+  let fechaTicket = document.getElementById("fechaTicket").value;
 
   // 🔍 DEBUGGING
   console.log("Cliente:", clienteTicket);
@@ -123,7 +150,8 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
     idEquipoTicket,
     tipoTicket,
     estadoTicket,
-    observaciones
+    observaciones,
+    fechaTicket,
   );
 
   //🟢 Guarda objeto en el array
@@ -148,7 +176,7 @@ function actualizarListaTickets(listaFiltrada = tickets) {
       listaFiltrada.forEach(ticket => {
           let li = document.createElement("li");
           li.classList.add("list-group-item");
-          li.textContent = `Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Observaciones: ${ticket.observaciones}`;
+          li.textContent = `Fecha: ${ticket.fechaTicket}, Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Observaciones: ${ticket.observaciones}`;
           lista.appendChild(li);
       });
   } else {
@@ -162,6 +190,7 @@ function actualizarListaTickets(listaFiltrada = tickets) {
 
 //                  🟢🟢Filtros🟢🟢
 function filtrarTickets() {
+  const fechaFiltro = document.getElementById("filtroFechaTicket").value;
   const clienteFiltro = document.getElementById("filtroClienteTicket").value.trim().toLowerCase();
   const idEquipoFiltro = document.getElementById("filtroIdEquipoTicket").value.trim().toLowerCase();
   const tipoFiltro = document.getElementById("filtroTipoTicket").value;
@@ -169,10 +198,11 @@ function filtrarTickets() {
 
   const ticketsFiltrados = tickets.filter(ticket => {
       return (
+          (fechaFiltro === "" || ticket.fechaTicket === fechaFiltro) &&
           (clienteFiltro === "" || ticket.clienteTicket.toLowerCase().includes(clienteFiltro)) &&
           (idEquipoFiltro === "" || ticket.idEquipoTicket.toLowerCase().includes(idEquipoFiltro)) &&
           (tipoFiltro === "" || ticket.tipoTicket === tipoFiltro) &&
-          (estadoFiltro === "" || ticket.estadoTicket === estadoFiltro)
+          (estadoFiltro === "" || ticket.estadoTicket === estadoFiltro)         
       );
   });
 

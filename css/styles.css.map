@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"styles.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/_variables.scss","../sass/_reset.scss","../sass/_formularios.scss"],"names":[],"mappings":"AAQA;AAAA;AAAA;AAAA;AAAA;AAAA;ACPA;EACI;;;ACAJ;EACE,kBFHQ;EEIR;EACA;EACA;;;AAEF;EACI;EACA,OFNU;EEOZ;EACA","file":"styles.css"}
