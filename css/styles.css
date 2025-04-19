@@ -8,18 +8,49 @@ body {
   background-color: rgb(153, 153, 153);
 }
 
-#equipoForm {
-  background-color: rgb(246, 153, 36);
-  color: rgb(24, 22, 22);
-  padding: 1rem;
+.toastify.toast-success {
+  background: #28a745;
+  color: #fff;
+  font-weight: bold;
   border-radius: 8px;
 }
 
-#ticketForm {
-  background-color: black;
+.toastify.toast-warning {
+  background: #ffc107;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.toastify.toast-info {
+  background: #17a2b8;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+#equipoForm {
+  background-color: rgb(175, 221, 235);
   color: rgb(24, 22, 22);
   padding: 1rem;
   border-radius: 8px;
+  max-width: 50%;
+}
+
+#ticketForm {
+  background-color: rgb(175, 221, 235);
+  color: rgb(24, 22, 22);
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 50%;
+}
+
+#listaEquipos {
+  max-width: 50%;
+}
+
+#listaTickets {
+  max-width: 50%;
 }
 
 /*# sourceMappingURL=styles.css.map */

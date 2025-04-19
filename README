@@ -1,0 +1,75 @@
+Simulador de Gestión de Mantenimiento
+Este proyecto simula un sistema de gestión de mantenimiento preventivo y correctivo para equipos de refrigeración. Está inspirado en la empresa real donde trabajo como cofundador. El objetivo principal es permitir la carga, visualización y gestión de equipos y tickets de mantenimiento mediante formularios interactivos, utilizando tecnologías modernas de JavaScript.
+
+Funcionalidad
+1. ABM de Equipos
+La primera sección del simulador permite realizar el Alta de equipos. Por el momento, no se encuentra implementada la función de modificación ni eliminación de equipos.
+
+Para cargar un equipo, se debe completar un formulario con los siguientes datos:
+
+Nombre del cliente
+
+ID del equipo, generado automáticamente en base a las siglas del cliente y un número incremental único por cliente (por ejemplo: CLI-001, CLI-002, etc.).
+
+Nombre del equipo, que debe ser breve y descriptivo (por ejemplo: Cámara 1, Heladera bajomesada lobby).
+
+Todos los equipos cargados se visualizan luego en una lista con todos sus datos.
+
+2. Carga de Tickets
+El sistema permite registrar tickets de mantenimiento asociados a los equipos. Los tickets se clasifican en:
+
+Preventivo: Tareas programadas realizadas periódicamente para garantizar el correcto funcionamiento del equipo.
+
+Correctivo: Intervenciones necesarias para reparar un componente dañado o un fallo detectado.
+
+Hiperactivo: Categoría interna utilizada para clasificar intervenciones urgentes o críticas que requieren atención inmediata debido a su impacto en la operación del cliente.
+
+El formulario para cargar tickets solicita:
+
+Cliente
+
+ID del equipo
+
+Tipo de ticket (preventivo, correctivo o hiperactivo)
+
+Estado del ticket
+
+Observaciones
+
+Fecha
+
+Los tickets cargados se muestran luego en una lista completa.
+
+3. Validaciones
+Los formularios están validados: no se permite la carga de equipos o tickets si faltan datos obligatorios. En estos casos, se muestran mensajes informativos mediante notificaciones Toastify.
+
+Tecnologías y Herramientas Utilizadas
+HTML5 y CSS3: Para la estructura y estilo de la interfaz.
+
+SCSS (SASS): Uso de preprocesador para una mejor organización del código CSS, utilizando variables, anidamiento y modularización.
+
+JavaScript (ES6+): Lenguaje principal para la lógica del proyecto, con uso de:
+
+Funciones
+
+Clases (opcional en futuro)
+
+Métodos de arrays (map, filter, find, forEach, etc.)
+
+Eventos del DOM (submit, input, click, etc.)
+
+localStorage: Para guardar datos de forma persistente en el navegador
+
+Fetch + JSON: Para simular la carga asíncrona de datos.
+
+Librerías Implementadas
+Toastify JS: Para mostrar notificaciones visuales personalizadas en la interfaz. Se utilizó para:
+
+Validación de campos
+
+Confirmación de carga de datos
+
+Mensajes de sistema
+
+Se aplicaron estilos personalizados a Toastify desde SCSS para unificar la estética visual del proyecto.
+

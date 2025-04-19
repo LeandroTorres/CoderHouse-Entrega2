@@ -19,6 +19,7 @@ if (localStorage.getItem("equipos")) {
     })
     .catch(error => console.error("Error al cargar los equipos:", error));
 }
+// fetch
 
 
 // ✔️Constructor de Objeto Equipo
@@ -37,6 +38,19 @@ document.getElementById("equipoForm").addEventListener("submit", function (event
   let cliente = document.getElementById("cliente").value;
   let nombreEquipo = document.getElementById("nombreEquipo").value;
 
+  if (!idEquipo || !clienteTicket || !nombreEquipo) {
+    // 💡💡💡 TOASTIFY 💡💡💡
+    Toastify({
+      text: "Debés completar todos los campos",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      className: "toast-warning",
+      style: {}
+    }).showToast();
+    return;
+ }
+
   //✔️ Crear objeto Equipo con los datos ingresados
   let nuevoEquipo = new Equipo(idEquipo, nombreEquipo, cliente);
 
@@ -48,26 +62,36 @@ document.getElementById("equipoForm").addEventListener("submit", function (event
 
   //✔️ Mostrar en la página los equipos creados
   actualizarListaEquipos();
+
+  // 💡💡💡 TOASTIFY 💡💡💡
+
+  Toastify({
+    text: "Equipo cargado con éxito ✅",
+    duration: 3000,
+    gravity: "bottom",
+    position: "right",
+    className: "toast-success",
+    style: {}
+  }).showToast();
+
 });
 
 //✔️ Función para mostrar los equipos en la lista HTML
-function actualizarListaEquipos() {
+function actualizarListaEquipos(listaFiltrada = equipos) {
   let lista = document.getElementById("listaEquipos");
-  lista.innerHTML = ""; // Limpiar la lista antes de actualizar
+  lista.innerHTML = "";
 
-  //✔️ Verificar si hay equipos
-  if (equipos.length > 0) {
-    equipos.forEach(equipo => {
+  if (listaFiltrada.length > 0) {
+    listaFiltrada.forEach(equipo => {
       let li = document.createElement("li");
       li.classList.add("list-group-item");
       li.textContent = `| ID: ${equipo.IdEquipo} | Nombre: ${equipo.NombreEquipo} | Cliente: ${equipo.Cliente} |`;
       lista.appendChild(li);
     });
   } else {
-    // 🚨 Si no hay equipos, muestra un mensaje
     let li = document.createElement("li");
-    li.classList.add("list-group-item", "text-muted", "fst-italic"); // estilo para el mensaje vacío
-    li.textContent = "Aún no hay equipos cargados.";
+    li.classList.add("list-group-item", "text-muted", "fst-italic");
+    li.textContent = "No se encontraron equipos con esos criterios.";
     lista.appendChild(li);
   }
 }
@@ -81,11 +105,22 @@ function filtrarEquipos() {
 
   const equiposFiltrados = equiposGuardados.filter(equipo => {
     return (
-      (clienteFiltro === "" || equipo.cliente.toLowerCase().includes(clienteFiltro)) &&
-      (idEquipoFiltro === "" || equipo.idEquipo.toLowerCase().includes(idEquipoFiltro)) &&
-      (nombreEquipoFiltro === "" || equipo.nombreEquipo.toLowerCase().includes(nombreEquipoFiltro))
+      (clienteFiltro === "" || equipo.Cliente.toLowerCase().includes(clienteFiltro)) &&
+      (idEquipoFiltro === "" || equipo.IdEquipo.toLowerCase().includes(idEquipoFiltro)) &&
+      (nombreEquipoFiltro === "" || equipo.NombreEquipo.toLowerCase().includes(nombreEquipoFiltro))
     );
   });
+
+  // 💡💡💡 TOASTIFY 💡💡💡
+  Toastify({
+    text: "Filtros aplicados 🔍",
+    duration: 2500,
+    gravity: "bottom",
+    position: "right",
+    className: "toast-success",
+    style: {}
+  }).showToast();
+
 
   actualizarListaEquipos(equiposFiltrados);
 }
@@ -96,6 +131,22 @@ function limpiarFiltrosEquipos() {
   document.getElementById("filtroNombreEquipo").value = "";
   actualizarListaEquipos(); // Vuelve a mostrar todos
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("btnFiltrar").addEventListener("click", filtrarEquipos);
+  document.getElementById("btnLimpiar").addEventListener("click", limpiarFiltrosEquipos);
+});
+
+// 💡💡💡 TOASTIFY 💡💡💡
+Toastify({
+  text: "Filtros limpiados ♻️",
+  duration: 2500,
+  gravity: "bottom",
+  position: "right",
+  className: "toast-success",
+  style: {}
+}).showToast();
 
 //✔️ Llamada inicial para mostrar los equipos guardados cuando la página se carga
 actualizarListaEquipos();
@@ -115,7 +166,7 @@ function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones, fech
   this.tipoTicket = tipoTicket;
   this.estadoTicket = estadoTicket;
   this.observaciones = observaciones;
-  this.fechaTicket = fechaTicket; 
+  this.fechaTicket = fechaTicket;
 }
 
 //🟢Funcion para manejar el Envio de Formulario
@@ -123,7 +174,7 @@ function Ticket(cliente, idEquipo, tipoTicket, estadoTicket, observaciones, fech
 document.getElementById("ticketForm").addEventListener("submit", function (event) {
   event.preventDefault(); // Reset, evita que la pagina se recargue
 
-//🟢 Obtener valores de los imputs
+  //🟢 Obtener valores de los imputs
 
   let clienteTicket = document.getElementById("clienteTicket").value.trim();
   let idEquipoTicket = document.getElementById("idEquipoTicket").value.trim();
@@ -140,7 +191,15 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
   console.log("Observaciones:", observaciones);
 
   if (!clienteTicket || !idEquipoTicket || !tipoTicket || !estadoTicket) {
-    alert("Por favor, completá todos los campos obligatorios.");
+    // 💡💡💡 TOASTIFY 💡💡💡
+    Toastify({
+      text: "Debés completar todos los campos",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      className: "toast-warning",
+      style: {}
+    }).showToast();
     return;
   }
 
@@ -163,6 +222,14 @@ document.getElementById("ticketForm").addEventListener("submit", function (event
 
   // mostrar en pagina los tickets
   actualizarListaTickets();
+  Toastify({
+    text: "Ticket cargado correctamente",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    className: "toast-success",
+    style: {}
+  }).showToast();
   document.getElementById("ticketForm").reset();
 });
 
@@ -173,18 +240,18 @@ function actualizarListaTickets(listaFiltrada = tickets) {
 
   //🟢 Verifica si hay tickets
   if (listaFiltrada.length > 0) {
-      listaFiltrada.forEach(ticket => {
-          let li = document.createElement("li");
-          li.classList.add("list-group-item");
-          li.textContent = `Fecha: ${ticket.fechaTicket}, Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Observaciones: ${ticket.observaciones}`;
-          lista.appendChild(li);
-      });
+    listaFiltrada.forEach(ticket => {
+      let li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = `Fecha: ${ticket.fechaTicket}, Cliente: ${ticket.clienteTicket}, Id: ${ticket.idEquipoTicket}, Tipo: ${ticket.tipoTicket}, Estado: ${ticket.estadoTicket}, Observaciones: ${ticket.observaciones}`;
+      lista.appendChild(li);
+    });
   } else {
     //🚨 Si nohay tickets muestra un mensaje
-      let li = document.createElement("li");
-      li.classList.add("list-group-item", "text-muted", "fst-italic");
-      li.textContent = "No se encontraron tickets con esos criterios.";
-      lista.appendChild(li);
+    let li = document.createElement("li");
+    li.classList.add("list-group-item", "text-muted", "fst-italic");
+    li.textContent = "No se encontraron tickets con esos criterios.";
+    lista.appendChild(li);
   }
 }
 
@@ -197,16 +264,24 @@ function filtrarTickets() {
   const estadoFiltro = document.getElementById("filtroEstadoTicket").value;
 
   const ticketsFiltrados = tickets.filter(ticket => {
-      return (
-          (fechaFiltro === "" || ticket.fechaTicket === fechaFiltro) &&
-          (clienteFiltro === "" || ticket.clienteTicket.toLowerCase().includes(clienteFiltro)) &&
-          (idEquipoFiltro === "" || ticket.idEquipoTicket.toLowerCase().includes(idEquipoFiltro)) &&
-          (tipoFiltro === "" || ticket.tipoTicket === tipoFiltro) &&
-          (estadoFiltro === "" || ticket.estadoTicket === estadoFiltro)         
-      );
+    return (
+      (fechaFiltro === "" || ticket.fechaTicket === fechaFiltro) &&
+      (clienteFiltro === "" || ticket.clienteTicket.toLowerCase().includes(clienteFiltro)) &&
+      (idEquipoFiltro === "" || ticket.idEquipoTicket.toLowerCase().includes(idEquipoFiltro)) &&
+      (tipoFiltro === "" || ticket.tipoTicket === tipoFiltro) &&
+      (estadoFiltro === "" || ticket.estadoTicket === estadoFiltro)      
+    );       
   });
 
   actualizarListaTickets(ticketsFiltrados);
+  Toastify({
+    text: "Filtro aplicado",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    className: "toast-info",
+    style: {},
+  }).showToast();
 }
 //🟢 Limpia campos en filtro
 function limpiarFiltrosTickets() {

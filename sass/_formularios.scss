@@ -1,16 +1,23 @@
 @use './variables' as v;
 
 #equipoForm{
-  background-color: v.$naranja;
+  background-color: v.$celeste;
   color: v.$color_texto;
   padding: 1rem;
   border-radius: 8px;
+  max-width: 50%;
 }
 #ticketForm{
-    background-color: black;
+    background-color: v.$celeste;
     color: v.$color_texto;
-  padding: 1rem;
-  border-radius: 8px;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 50%;
 }
-
+#listaEquipos{
+  max-width:50%;
+}
+#listaTickets{
+  max-width: 50%;
+}
 
