@@ -1,75 +1,53 @@
-Simulador de Gestión de Mantenimiento
-Este proyecto simula un sistema de gestión de mantenimiento preventivo y correctivo para equipos de refrigeración. Está inspirado en la empresa real donde trabajo como cofundador. El objetivo principal es permitir la carga, visualización y gestión de equipos y tickets de mantenimiento mediante formularios interactivos, utilizando tecnologías modernas de JavaScript.
+# 🛠️ Simulador de Gestión de Mantenimiento
 
-Funcionalidad
-1. ABM de Equipos
-La primera sección del simulador permite realizar el Alta de equipos. Por el momento, no se encuentra implementada la función de modificación ni eliminación de equipos.
+Este proyecto simula un programa de gestión de mantenimiento para la empresa de la que soy cofundador y en la cual trabajo. El objetivo es organizar la información de los equipos y registrar las intervenciones técnicas realizadas mediante un sistema de tickets.
 
-Para cargar un equipo, se debe completar un formulario con los siguientes datos:
+---
 
-Nombre del cliente
+## 📌 Funcionalidades principales
 
-ID del equipo, generado automáticamente en base a las siglas del cliente y un número incremental único por cliente (por ejemplo: CLI-001, CLI-002, etc.).
+### 1. Alta de Equipos
+- Se ingresan los siguientes datos:
+  - Cliente
+  - ID del equipo (formado por siglas del cliente + número secuencial de 3 dígitos)
+  - Nombre del equipo (corto y descriptivo, ej: `Camara 1`, `Heladera bajomesada lobby`)
+- Cada equipo queda almacenado en `localStorage`.
+- ⚠️ **Actualmente, no se encuentra implementada la funcionalidad de modificar o eliminar equipos.**
 
-Nombre del equipo, que debe ser breve y descriptivo (por ejemplo: Cámara 1, Heladera bajomesada lobby).
+### 2. Lista de Equipos
+- Se muestran todos los equipos cargados junto con sus datos completos.
 
-Todos los equipos cargados se visualizan luego en una lista con todos sus datos.
+### 3. Carga de Tickets
+- Se registra:
+  - Cliente
+  - ID de equipo
+  - Tipo de ticket: `preventivo`, `correctivo` o `hiperactivo`
+  - Estado del ticket
+  - Fecha y observaciones
 
-2. Carga de Tickets
-El sistema permite registrar tickets de mantenimiento asociados a los equipos. Los tickets se clasifican en:
+#### Tipos de ticket:
+- **Preventivo:** tareas programadas de control rutinario.
+- **Correctivo:** intervenciones que surgen por fallas o urgencias.
+- **Hiperactivo:** tareas repetitivas o reincidentes que requieren atención prioritaria por su frecuencia o impacto. *(Estos pueden incluir equipos que presentan fallas constantes o situaciones no resueltas en intervenciones anteriores.)*
 
-Preventivo: Tareas programadas realizadas periódicamente para garantizar el correcto funcionamiento del equipo.
+### 4. Lista de Tickets
+- Se visualizan todos los tickets generados con sus datos.
+- El sistema valida que todos los campos sean completados antes de guardar.
 
-Correctivo: Intervenciones necesarias para reparar un componente dañado o un fallo detectado.
+---
 
-Hiperactivo: Categoría interna utilizada para clasificar intervenciones urgentes o críticas que requieren atención inmediata debido a su impacto en la operación del cliente.
+## 🧠 Tecnologías utilizadas
 
-El formulario para cargar tickets solicita:
+- **HTML, CSS y JavaScript**
+- **SCSS** para estilos organizados y reutilizables.
+- **Toastify** para notificaciones visuales no intrusivas.
+- **Fetch + JSON local** para simulación de asincronismo en la carga de datos.
 
-Cliente
+---
 
-ID del equipo
 
-Tipo de ticket (preventivo, correctivo o hiperactivo)
+## 🧑‍💻 Autor
 
-Estado del ticket
+Este proyecto fue desarrollado como entrega final del curso de JavaScript en Coderhouse, aplicado a un caso real de la empresa donde actualmente trabajo.
 
-Observaciones
-
-Fecha
-
-Los tickets cargados se muestran luego en una lista completa.
-
-3. Validaciones
-Los formularios están validados: no se permite la carga de equipos o tickets si faltan datos obligatorios. En estos casos, se muestran mensajes informativos mediante notificaciones Toastify.
-
-Tecnologías y Herramientas Utilizadas
-HTML5 y CSS3: Para la estructura y estilo de la interfaz.
-
-SCSS (SASS): Uso de preprocesador para una mejor organización del código CSS, utilizando variables, anidamiento y modularización.
-
-JavaScript (ES6+): Lenguaje principal para la lógica del proyecto, con uso de:
-
-Funciones
-
-Clases (opcional en futuro)
-
-Métodos de arrays (map, filter, find, forEach, etc.)
-
-Eventos del DOM (submit, input, click, etc.)
-
-localStorage: Para guardar datos de forma persistente en el navegador
-
-Fetch + JSON: Para simular la carga asíncrona de datos.
-
-Librerías Implementadas
-Toastify JS: Para mostrar notificaciones visuales personalizadas en la interfaz. Se utilizó para:
-
-Validación de campos
-
-Confirmación de carga de datos
-
-Mensajes de sistema
-
-Se aplicaron estilos personalizados a Toastify desde SCSS para unificar la estética visual del proyecto.
 
